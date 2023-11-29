@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/28 05:24:39 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/29 04:59:10 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <unistd.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
@@ -26,7 +27,7 @@ typedef struct s_rules t_rules;
 
 typedef struct philosopher
 {
-    int    philo_id;
+    int    id;
     int    times_eaten;
     int    right_fork_id;
     int    left_fork_id;
@@ -37,7 +38,7 @@ typedef struct philosopher
 
 typedef struct s_rules
 {
-    int    nb_philo;
+    int    nbr_philo;
     int    time_to_die;
     int    time_to_eat;
     int    time_to_sleep;
@@ -50,5 +51,16 @@ typedef struct s_rules
     pthread_mutex_t    meal_check_mutex;
     t_philosopher      philosophers[MAX_PHILOSOPHERS];
 }                   t_rules;
+
+/* >>> init.c <<< */
+int parse_and_initialise(int argc, char **argv, t_rules *rules);
+int parse(char **argv, t_rules *rules);
+int initialise_mutexes(t_rules *rules);
+int initialise_philosophers(t_rules *rules);
+
+/* >>> philo.c <<< */
+
+/* >>> utils.c <<< */
+int	ft_atoi(char *str);
 
 #endif

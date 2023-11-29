@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:03:15 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/29 03:53:06 by shamzaou@st      ###   ########.fr       */
+/*   Updated: 2023/11/29 04:23:00 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	init_status = parse_and_initialise(argc, argv, &rules);
 	if (init_status != EXIT_SUCCESS)
 	{
-		printf("Error: Mutex initialisation failed!\n");
+		printf("Error: Program initialisation failed!\n");
         exit(EXIT_FAILURE);
 	}
 	if (philo(&rules))
@@ -36,11 +36,3 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int parse_and_initialize(int argc, char **argv, t_rules *rules)
-{
-    if (init_all(rules, argv))
-    {
-        return (EXIT_FAILURE);
-    }
-    return (EXIT_SUCCESS);
-}
