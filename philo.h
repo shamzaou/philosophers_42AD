@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/29 06:02:32 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:51:55 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <unistd.h>
+# include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -43,7 +44,7 @@ typedef struct s_rules
     int    time_to_eat;
     int    time_to_sleep;
     int    max_meals;
-    bool   is_dead;
+    bool   death;
     bool   all_ate;
     long long   simulation_start;
     pthread_mutex_t    fork_mutex[MAX_PHILOSOPHERS];
@@ -59,8 +60,14 @@ int initialise_mutexes(t_rules *rules);
 int initialise_philosophers(t_rules *rules);
 
 /* >>> philo.c <<< */
+int simulation(t_rules *rules);
+void routine(void *philo_ptr);
 
 /* >>> utils.c <<< */
 int	ft_atoi(char *str);
+void event_print(t_rules *rules, int id, char *string);
+long long timestamp(void);
+long long time_diff(long long past, long long present);
+void ft_usleep(long long time, t_rules *rules);
 
 #endif

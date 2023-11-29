@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:32 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/29 05:00:02 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:14:13 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int parse_and_initialise(int argc, char **argv, t_rules *rules)
 {
     if (parse(argv, rules))
         return (EXIT_FAILURE);
-    rules->is_dead = false;
+    rules->death = false;
     rules->all_ate = false;
     
     if (initialise_mutexes(rules))
@@ -67,7 +67,7 @@ int initialise_philosophers(t_rules *rules)
     while (++id <= rules->nbr_philo)
     {
         rules->philosophers[id].id = id;
-        rules->philosophers[id].last_meal_time = 0;
+        rules->philosophers[id].times_eaten = 0;
         rules->philosophers[id].left_fork_id = id;
         rules->philosophers[id].right_fork_id = (id + 1) % rules->nbr_philo;
         rules->philosophers[id].last_meal_time = 0;
