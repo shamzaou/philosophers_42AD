@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/29 04:59:10 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:02:32 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct philosopher
     int    times_eaten;
     int    right_fork_id;
     int    left_fork_id;
-    int    last_meal_time;
+    long long    last_meal_time;
     t_rules    *rules;
     pthread_t    thread_id;
 }                   t_philosopher;
@@ -45,7 +45,7 @@ typedef struct s_rules
     int    max_meals;
     bool   is_dead;
     bool   all_ate;
-    bool   simulation_start;
+    long long   simulation_start;
     pthread_mutex_t    fork_mutex[MAX_PHILOSOPHERS];
     pthread_mutex_t    print_mutex;
     pthread_mutex_t    meal_check_mutex;
