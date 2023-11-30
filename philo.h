@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 01:51:55 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 04:39:44 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,16 @@ typedef struct s_rules
 }                   t_rules;
 
 /* >>> init.c <<< */
-int parse_and_initialise(int argc, char **argv, t_rules *rules);
+int parse_and_initialise(char **argv, t_rules *rules);
 int parse(char **argv, t_rules *rules);
 int initialise_mutexes(t_rules *rules);
 int initialise_philosophers(t_rules *rules);
 
 /* >>> philo.c <<< */
 int simulation(t_rules *rules);
-void routine(void *philo_ptr);
+void *routine(void *philo_ptr);
+void eat(t_philosopher *philo);
+void *routine_monitor(void *rules_ptr);
 
 /* >>> utils.c <<< */
 int	ft_atoi(char *str);

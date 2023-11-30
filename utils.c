@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:35 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/29 18:34:29 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 04:51:58 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ long long timestamp(void)
 	struct timeval t;
 
 	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_sec / 1000));
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
 long long time_diff(long long past, long long present)
@@ -58,7 +58,7 @@ void event_print(t_rules *rules, int id, char *string)
 	if (!(rules->death))
 	{
 		printf("%lli ", timestamp() - rules->simulation_start);
-		printf("%li ", id + 1);
+		printf("%i ", id + 1);
 		printf("%s\n", string);
 	}
 	pthread_mutex_unlock(&(rules->print_mutex));
