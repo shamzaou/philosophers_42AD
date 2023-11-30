@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 04:39:44 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:30:55 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int simulation(t_rules *rules);
 void *routine(void *philo_ptr);
 void eat(t_philosopher *philo);
 void *routine_monitor(void *rules_ptr);
+void destroy_mutexes(t_rules *rules);
 
 /* >>> utils.c <<< */
 int	ft_atoi(char *str);
@@ -71,5 +72,8 @@ void event_print(t_rules *rules, int id, char *string);
 long long timestamp(void);
 long long time_diff(long long past, long long present);
 void ft_usleep(long long time, t_rules *rules);
+
+
+int  error_handler(int error_code);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:30 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 04:49:53 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:29:36 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int simulation(t_rules *rules)
     // Join monitoring thread
     if (pthread_join(monitor_thread, NULL))
         return(EXIT_FAILURE);
-        
+    
+    destroy_mutexes(rules);
+    
     return (EXIT_SUCCESS);
 }
 
@@ -122,4 +124,18 @@ void *routine_monitor(void *rules_ptr)
             rules->all_ate = true;
     }
     return (NULL);
+}
+
+void destroy_mutexes(t_rules *rules)
+{
+    int i;
+
+    i = 0;
+    while (i < rules->nbr_philo)
+    {
+        pthread_mutex_destroy(&(rules->fork_mutex[i]));
+        i++;
+    }
+    pthread_mutex_destroy(&(rules->print_mutex));
+    pthread_mutex_destroy(&(rules->meal_check_mutex));
 }

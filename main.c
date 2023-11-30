@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:03:15 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 04:39:50 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:13:22 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 int	main(int argc, char **argv)
 {
 	t_rules rules;
+	int code;
 
 	if (argc != 5 && argc != 6)
 	{
-		printf("Usage: number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
-		return (EXIT_FAILURE);
+		return (error_handler(1));
 	}
-	if (parse_and_initialise(argv, &rules))
+	code = parse_and_initialise(argv, &rules);
+	if (code == 3)
+    {
+		return (error_handler(3));
+	}
+	else if (code == 4)
 	{
-		printf("Error: Program initialisation failed!\n");
-        return (EXIT_FAILURE);
+		return (error_handler(4));
 	}
 	if (simulation(&rules))
 	{
-        printf("Error: Simulation failed!\n");
-        return (EXIT_FAILURE);
+        return (error_handler(2));
     }
 	return (EXIT_SUCCESS);
 }

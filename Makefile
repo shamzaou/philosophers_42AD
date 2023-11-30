@@ -4,7 +4,7 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -pthread -g
 
-SRCS = main.c philo.c init.c utils.c
+SRCS = main.c philo.c init.c utils.c error_handler.c
 
 OBJS = $(SRCS:.c=.o)
 
