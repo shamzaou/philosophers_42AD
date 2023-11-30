@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
+/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:35 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 19:04:48 by shamzaou@st      ###   ########.fr       */
+/*   Updated: 2023/12/01 02:20:18 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-long long timestamp(void)
+long long	timestamp(void)
 {
-	struct timeval t;
+	struct timeval	t;
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-long long time_diff(long long past, long long present)
+long long	time_diff(long long past, long long present)
 {
 	return (present - past);
 }
 
-void event_print(t_rules *rules, int id, char *string)
+void	event_print(t_rules *rules, int id, char *string)
 {
 	pthread_mutex_lock(&(rules->print_mutex));
 	if (!(rules->death))
@@ -62,15 +62,15 @@ void event_print(t_rules *rules, int id, char *string)
 	pthread_mutex_unlock(&(rules->print_mutex));
 }
 
-void ft_usleep(long long time, t_rules *rules)
+void	ft_usleep(long long time, t_rules *rules)
 {
-	long long pin;
-	
+	long long	pin;
+
 	pin = timestamp();
 	while (!(rules->death))
 	{
 		if (time_diff(pin, timestamp()) >= time)
-			break;
+			break ;
 		usleep(50);
 	}
 }

@@ -1,0 +1,28 @@
+# Compiled object files
+*.o
+
+# Executables
+*.exe
+*.out
+
+# Compiled dynamic libraries
+*.so
+
+# Compiled static libraries
+*.a
+
+# Dependency directories
+.depend/
+
+# IDE specific files
+.vscode/
+*.code-workspace
+
+# Editor backup files
+*~
+
+# macOS specific files
+.DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db

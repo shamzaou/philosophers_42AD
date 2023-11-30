@@ -14,20 +14,20 @@
 
 int	main(int argc, char **argv)
 {
-	t_rules rules;
-	int code;
+	t_rules	rules;
+	int		code;
 
 	if (argc != 5 && argc != 6)
 	{
 		return (error_handler(1));
 	}
 	if (parse_and_initialise(argv, &rules))
-    {
+	{
 		return (error_handler(3));
 	}
 	if (simulation(&rules))
 	{
-        return (error_handler(2));
-    }
+		return (error_handler(2));
+	}
 	return (EXIT_SUCCESS);
 }
