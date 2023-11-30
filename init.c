@@ -6,7 +6,7 @@
 /*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:32 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 08:40:09 by shamzaou@st      ###   ########.fr       */
+/*   Updated: 2023/11/30 19:05:07 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int parse_and_initialise(char **argv, t_rules *rules)
         return (EXIT_FAILURE);
     rules->death = false;
     rules->all_ate = false;
-    
+
     if (initialise_mutexes(rules))
         return (EXIT_FAILURE);
     if (initialise_philosophers(rules))
@@ -33,8 +33,6 @@ int parse(char **argv, t_rules *rules)
     rules->time_to_eat = ft_atoi(argv[3]);
     rules->time_to_sleep = ft_atoi(argv[4]);
     // NEEDS MORE CHECKS
-    if (rules->nbr_philo < 2)
-        return (printf("0 1 died\n"));
     if (rules->nbr_philo > MAX_PHILOSOPHERS ||
         rules->time_to_die < 0 || rules->time_to_eat < 0 ||
         rules->time_to_sleep < 0)

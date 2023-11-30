@@ -6,7 +6,7 @@
 /*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:03:15 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 09:13:22 by shamzaou@st      ###   ########.fr       */
+/*   Updated: 2023/11/30 19:00:30 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,9 @@ int	main(int argc, char **argv)
 	{
 		return (error_handler(1));
 	}
-	code = parse_and_initialise(argv, &rules);
-	if (code == 3)
+	if (parse_and_initialise(argv, &rules))
     {
 		return (error_handler(3));
-	}
-	else if (code == 4)
-	{
-		return (error_handler(4));
 	}
 	if (simulation(&rules))
 	{

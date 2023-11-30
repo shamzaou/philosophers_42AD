@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:35 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 04:51:58 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:04:48 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_atoi(char *str)
 			return (-1);
 		i++;
 	}
-	if (result < 2)
-		return (-1);
 	if (str[i] && !(str[i] >= '0' && str[i] <= '9'))
 		return (-1);
 	return (result);

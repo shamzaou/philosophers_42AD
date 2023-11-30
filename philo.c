@@ -6,7 +6,7 @@
 /*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:30 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/11/30 09:29:36 by shamzaou@st      ###   ########.fr       */
+/*   Updated: 2023/11/30 22:49:13 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ void *routine(void *philo_ptr)
     if (philo->id % 2)
         usleep(15000);
         
-    // while "condition" is useless with new plan
     while (!(rules->death))
     {
         eat(philo);
-        if (rules->all_ate)
+        if (rules->all_ate || rules->nbr_philo == 1)
+        {
+            pthread_mutex_unlock(&(rules->fork_mutex[philo->right_fork_id]));
+            pthread_mutex_unlock(&(rules->fork_mutex[philo->left_fork_id]));
             break;
+        }
 
         event_print(rules, philo->id, "is sleeping");
 
@@ -83,14 +86,22 @@ void eat(t_philosopher *philo)
     rules = philo->rules;
     pthread_mutex_lock(&(rules->fork_mutex[philo->left_fork_id]));
     event_print(rules, philo->id, "has taken a fork");
+    if (rules->nbr_philo == 1)
+    {
+        pthread_mutex_unlock(&(rules->fork_mutex[philo->left_fork_id]));
+        ft_usleep(rules->time_to_die, rules);
+        return ;
+    }
     pthread_mutex_lock(&(rules->fork_mutex[philo->right_fork_id]));
     event_print(rules, philo->id, "has taken a fork");
     pthread_mutex_lock(&(rules->meal_check_mutex));
     event_print(rules, philo->id, "is eating");
     philo->last_meal_time = timestamp();
-    pthread_mutex_unlock(&(rules->meal_check_mutex));
-    ft_usleep(rules->time_to_eat, rules);
     (philo->times_eaten)++;
+    pthread_mutex_unlock(&(rules->meal_check_mutex));
+    if (rules->all_ate)
+        return;
+    ft_usleep(rules->time_to_eat, rules);
     pthread_mutex_unlock(&(rules->fork_mutex[philo->left_fork_id]));
     pthread_mutex_unlock(&(rules->fork_mutex[philo->right_fork_id]));
 }
