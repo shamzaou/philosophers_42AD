@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:37 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/01 02:23:03 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/12/01 02:58:12 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ void					ft_usleep(long long time, t_rules *rules);
 
 /* >>> error_handler.c <<< */
 int						error_handler(int error_code);
+int						join_threads(t_rules *rules, pthread_t monitor_thread);
+bool					check_all_ate(t_rules *rules);
 
 #endif

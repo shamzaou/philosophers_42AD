@@ -6,7 +6,7 @@
 /*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:30 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/01 02:15:27 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/12/01 02:57:49 by shamzaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,7 @@ int	simulation(t_rules *rules)
 	}
 	if (pthread_create(&monitor_thread, NULL, routine_monitor, rules))
 		return (EXIT_FAILURE);
-	id = 0;
-	while (id < rules->nbr_philo)
-	{
-		if (pthread_join(philosophers[id].thread_id, NULL))
-			return (EXIT_FAILURE);
-		id++;
-	}
-	if (pthread_join(monitor_thread, NULL))
-		return (EXIT_FAILURE);
+	join_threads(rules, monitor_thread);
 	destroy_mutexes(rules);
 	return (EXIT_SUCCESS);
 }
@@ -119,11 +111,7 @@ void	*routine_monitor(void *rules_ptr)
 		}
 		if (rules->death)
 			break ;
-		i = 0;
-		while (rules->max_meals != -1 && i < rules->nbr_philo
-			&& rules->philosophers[i].times_eaten >= rules->max_meals)
-			i++;
-		if (i == rules->nbr_philo)
+		if (check_all_ate(rules))
 			rules->all_ate = true;
 	}
 	return (NULL);
