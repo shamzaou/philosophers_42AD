@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamzaou <shamzaou@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: shamzaou@student.42abudhabi.ae <shamzao    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 04:05:30 by shamzaou          #+#    #+#             */
-/*   Updated: 2023/12/01 02:57:49 by shamzaou         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:09:25 by shamzaou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
